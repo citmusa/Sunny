@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -99,11 +100,23 @@ public class ForecastFragment extends Fragment {
         listView.setAdapter(mForecastAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            Toast toast = null;
+
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String msg = "Item selected: "+ i;
-                Toast toast = Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT);
-                toast.show();
+                if (toast != null){
+                    toast.setText(msg);
+                    toast.show();
+                }
+                else{
+                    toast = Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER,0,0);
+                    toast.show();
+                }
+
+
             }
         });
 
