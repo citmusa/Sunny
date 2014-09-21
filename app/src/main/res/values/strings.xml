@@ -7,5 +7,6 @@
 
     <!-- Menu forecast fragment -->
     <string name="refresh">Refresh</string>
+    <string name="title_activity_detail">detail</string>
 
 </resources>
