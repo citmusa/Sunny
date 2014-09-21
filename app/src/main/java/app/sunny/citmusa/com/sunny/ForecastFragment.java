@@ -11,8 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,8 +29,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Encapsulates fetching the forecast and displaying it as a {@link ListView} layout.
@@ -74,13 +76,7 @@ public class ForecastFragment extends Fragment {
 
         //Fake Array data
         String[] forecastArray = {
-                "Hoy - Nublado - 24/13",
-                "Mañana - Lluvia - 25/13",
-                "Domingo - Lluvia - 24/13",
-                "Lunes - Lluvia - 24/13",
-                "Martes - Meteoros - 24/12",
-                "Miércoles - Hamburguesas - 20/16",
-                "Jueves - Llueve coca light - 15/19"
+                "No data to display",
         };
 
         // Now that we have some dummy forecast data, create an ArrayAdapter.
@@ -102,6 +98,14 @@ public class ForecastFragment extends Fragment {
         ListView listView = (ListView) rootView.findViewById(R.id.list_item_forecast);
         listView.setAdapter(mForecastAdapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String msg = "Item selected: "+ i;
+                Toast toast = Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
 
         return rootView;
     }
@@ -109,7 +113,6 @@ public class ForecastFragment extends Fragment {
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
         private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
-
         /* The date/time conversion code is going to be moved outside the asynctask later,
  * so for convenience we're breaking it out into its own method now.
  */

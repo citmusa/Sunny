@@ -3,5 +3,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_refresh"
           android:title="@string/refresh"
-          app:showAsAction="never" />
+          android:icon="@android:drawable/stat_notify_sync"
+          app:showAsAction="always" />
 </menu>
