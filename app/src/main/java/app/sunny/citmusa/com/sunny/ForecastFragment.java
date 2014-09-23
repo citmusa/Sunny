@@ -1,9 +1,11 @@
 package app.sunny.citmusa.com.sunny;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,7 +65,11 @@ public class ForecastFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
             FetchWeatherTask weatherTask = new FetchWeatherTask();
-            weatherTask.execute("11950");
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            String zipcode = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
+            Log.i("TAG", "pref_location_default: "+getString(R.string.pref_location_default));
+            Log.i("TAG", "zipcode: "+zipcode);
+            weatherTask.execute(zipcode);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -100,9 +105,6 @@ public class ForecastFragment extends Fragment {
         listView.setAdapter(mForecastAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            Toast toast = null;
-
-
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String msg = mForecastAdapter.getItem(i);

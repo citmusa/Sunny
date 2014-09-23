@@ -1,8 +1,9 @@
 package app.sunny.citmusa.com.sunny;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
+import android.preference.PreferenceFragment;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings.
@@ -12,13 +13,29 @@ import android.preference.PreferenceManager;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends Activity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        // Add 'general' preferences, defined in the XML file
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_general);
-        PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
+
+        // Display the fragment as the main content.
+        getFragmentManager().beginTransaction()
+                .replace(android.R.id.content, new SettingsFragment())
+                .commit();
     }
+
+
+
+    public static class SettingsFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            // Load the preferences from an XML resource
+            addPreferencesFromResource(R.xml.pref_general);
+        }
+
+    }
+
 }
