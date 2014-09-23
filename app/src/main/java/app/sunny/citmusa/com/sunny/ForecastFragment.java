@@ -225,7 +225,7 @@ public class ForecastFragment extends Fragment {
 
             try {
                 // Construct the URL for the OpenWeatherMap query
-                // Possible parameters are avaiable at OWM's forecast API page, at
+                // Possible parameters are available at OWM's forecast API page, at
                 // http://openweathermap.org/API#forecast
                 //URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=11950&mode=json&units=metric&cnt=7&lang=es");
                 final String FORECAST_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?";
@@ -245,7 +245,7 @@ public class ForecastFragment extends Fragment {
 
                 URL url = new URL(builtUri.toString());
 
-                //Log.v(LOG_TAG, "Built URI " + builtUri.toString());
+                Log.v(LOG_TAG, "Built URI " + builtUri.toString());
 
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();

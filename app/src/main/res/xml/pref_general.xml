@@ -7,6 +7,5 @@
         android:inputType="text"
         android:singleLine="true"
         >
-
     </EditTextPreference>
 </PreferenceScreen>

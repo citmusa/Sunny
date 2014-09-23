@@ -9,5 +9,5 @@
     <!-- Default postal code for location preference [CHAR LIMIT=NONE] -->
     <string name="pref_location_default" translatable="false">11950</string>
     <!-- Summary
-    <string name="pref_location_default_summ">Ubicación =)</string> -->
+    <string name="pref_location_default_summ">Ubicación</string> -->
 </resources>
