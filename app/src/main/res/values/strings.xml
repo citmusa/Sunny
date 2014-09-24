@@ -6,7 +6,9 @@
     <string name="action_settings">Settings</string>
 
     <!-- Menu forecast fragment -->
-    <string name="refresh">Refresh</string>
     <string name="title_activity_detail">detail</string>
+
+    <string name="refresh">Refresh</string>
+    <string name="action_map">Map Location</string>
 
 </resources>
