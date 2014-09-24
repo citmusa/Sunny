@@ -39,6 +39,7 @@ public class SettingsActivity extends Activity {
             // Load the preferences from an XML resource
             addPreferencesFromResource(R.xml.pref_general);
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_temp_key)));
         }
 
         private void bindPreferenceSummaryToValue(Preference preference) {

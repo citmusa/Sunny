@@ -80,9 +80,8 @@ public class ForecastFragment extends Fragment {
         FetchWeatherTask weatherTask = new FetchWeatherTask();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String zipcode = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
-        Log.i("TAG", "pref_location_default: " + getString(R.string.pref_location_default));
-        Log.i("TAG", "zipcode: "+zipcode);
-        weatherTask.execute(zipcode);
+        String units = prefs.getString(getString(R.string.pref_temp_key),"metric");
+        weatherTask.execute(zipcode, units);
     }
 
 
@@ -148,7 +147,6 @@ public class ForecastFragment extends Fragment {
             // For presentation, assume the user doesn't care about tenths of a degree.
             long roundedHigh = Math.round(high);
             long roundedLow = Math.round(low);
-
             String highLowStr = roundedHigh + "/" + roundedLow;
             return highLowStr;
         }
